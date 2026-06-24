@@ -2077,49 +2077,46 @@
 
       <section class="control-body">
         <label for="newsOutletInput">언론사 / 사이트명</label>
-        <input id="newsOutletInput" value="HΣΛTWΔRΞ DAILY" />
+        <input id="newsOutletInput" value="언론사" />
 
         <label for="newsSectionInput">분류</label>
-        <input id="newsSectionInput" value="WORLD / POLITICS" />
+        <input id="newsSectionInput" value="분류" />
 
         <label for="newsTitleInput">기사 제목</label>
-        <textarea id="newsTitleInput" style="min-height: 92px;">소련의 붕괴, 세계 질서의 균열로 이어지다</textarea>
+        <textarea id="newsTitleInput" style="min-height: 92px;">제목</textarea>
 
         <label for="newsSubtitleInput">부제 / 요약문</label>
-        <textarea id="newsSubtitleInput" style="min-height: 92px;">국제사회는 이번 사건이 향후 20년의 지정학을 바꿀 수 있다고 보고 있다.</textarea>
+        <textarea id="newsSubtitleInput" style="min-height: 92px;">부제목</textarea>
 
         <div class="row">
           <div>
             <label for="newsDateInput">날짜</label>
-            <input id="newsDateInput" value="2600. 08. 15." />
+            <input id="newsDateInput" value="날짜" />
           </div>
           <div>
             <label for="newsReporterInput">기자</label>
-            <input id="newsReporterInput" value="김시아 기자" />
+            <input id="newsReporterInput" value="기자" />
           </div>
         </div>
 
         <label for="newsLocationInput">지역 / 출처</label>
-        <input id="newsLocationInput" value="서울 / LCW 중앙기록망" />
+        <input id="newsLocationInput" value="지역 / 출처" />
 
         <label for="newsMainImageInput">대표 이미지</label>
         <input id="newsMainImageInput" type="file" accept="image/*" />
 
         <label for="newsMainCaptionInput">대표 이미지 설명</label>
-        <input id="newsMainCaptionInput" value="자료사진. 하트웨어 세계관 공공기록망 제공." />
+        <input id="newsMainCaptionInput" value="대표 이미지 설명" />
 
         <label for="newsBodyInput">본문</label>
-        <textarea id="newsBodyInput">국제질서가 다시 움직이고 있다. 각국 정부와 주요 기관은 이번 사건의 파장을 분석하며 긴급 회의에 들어갔다.
-
-전문가들은 이번 변화가 단순한 국내 문제가 아니라, 지역 안보와 경제 체계 전체에 영향을 줄 수 있다고 보고 있다.
-
-한 외교 관계자는 “지금 필요한 것은 빠른 판단이 아니라, 오래 버틸 수 있는 질서의 설계”라고 말했다.</textarea>
+        <textarea id="newsBodyInput">본문</textarea>
 
         <label for="newsInlineImageInput">본문 삽입 이미지</label>
         <input id="newsInlineImageInput" type="file" accept="image/*" />
+        <img id="newsInlineImage" alt="" style="display:none;" />
 
         <label for="newsInlineCaptionInput">본문 이미지 설명</label>
-        <input id="newsInlineCaptionInput" value="현장 이미지 또는 추가 자료." />
+        <input id="newsInlineCaptionInput" value="본문 이미지 설명" />
 
         <label for="newsImagePositionInput">본문 이미지 위치</label>
         <select id="newsImagePositionInput">
@@ -2132,7 +2129,7 @@
         </select>
 
         <label for="newsQuoteInput">강조 인용문</label>
-        <input id="newsQuoteInput" value="“이번 사건은 하나의 국가가 아니라, 시대 전체의 방향을 흔들고 있다.”" />
+        <input id="newsQuoteInput" value="강조 인용문" />
 
         <label for="newsQuotePositionInput">강조 인용문 위치</label>
         <select id="newsQuotePositionInput">
@@ -2177,20 +2174,20 @@
     <section class="news-preview-wrap">
       <article id="newsPaper" class="news-paper">
         <div class="news-topline">
-          <div id="newsOutletText" class="news-logo">HΣΛTWΔRΞ DAILY</div>
-          <div id="newsSectionText" class="news-section-label">WORLD / POLITICS</div>
+          <div id="newsOutletText" class="news-logo">언론사</div>
+          <div id="newsSectionText" class="news-section-label">분류</div>
         </div>
 
         <div class="news-meta-row">
-          <span id="newsDateText">2600. 08. 15.</span>
+          <span id="newsDateText">날짜</span>
           <span>·</span>
-          <span id="newsReporterText">김시아 기자</span>
+          <span id="newsReporterText">기자</span>
           <span>·</span>
-          <span id="newsLocationText">서울 / LCW 중앙기록망</span>
+          <span id="newsLocationText">지역 / 출처</span>
         </div>
 
-        <h1 id="newsTitleText" class="news-title">소련의 붕괴, 세계 질서의 균열로 이어지다</h1>
-        <div id="newsSubtitleText" class="news-subtitle">국제사회는 이번 사건이 향후 20년의 지정학을 바꿀 수 있다고 보고 있다.</div>
+        <h1 id="newsTitleText" class="news-title">제목</h1>
+        <div id="newsSubtitleText" class="news-subtitle">부제목</div>
 
         <figure id="newsMainImageBox" class="news-main-image empty">
           <img id="newsMainImage" alt="" />
@@ -3373,17 +3370,17 @@
 
 
     const newsDefaults = {
-      outlet: "HΣΛTWΔRΞ DAILY",
-      section: "WORLD / POLITICS",
-      title: "소련의 붕괴, 세계 질서의 균열로 이어지다",
-      subtitle: "국제사회는 이번 사건이 향후 20년의 지정학을 바꿀 수 있다고 보고 있다.",
-      date: "2600. 08. 15.",
-      reporter: "김시아 기자",
-      location: "서울 / LCW 중앙기록망",
-      mainCaption: "자료사진. 하트웨어 세계관 공공기록망 제공.",
-      body: "국제질서가 다시 움직이고 있다. 각국 정부와 주요 기관은 이번 사건의 파장을 분석하며 긴급 회의에 들어갔다.\n\n전문가들은 이번 변화가 단순한 국내 문제가 아니라, 지역 안보와 경제 체계 전체에 영향을 줄 수 있다고 보고 있다.\n\n한 외교 관계자는 “지금 필요한 것은 빠른 판단이 아니라, 오래 버틸 수 있는 질서의 설계”라고 말했다.",
-      inlineCaption: "현장 이미지 또는 추가 자료.",
-      quote: "“이번 사건은 하나의 국가가 아니라, 시대 전체의 방향을 흔들고 있다.”"
+      outlet: "언론사",
+      section: "분류",
+      title: "제목",
+      subtitle: "부제목",
+      date: "날짜",
+      reporter: "기자",
+      location: "지역 / 출처",
+      mainCaption: "대표 이미지 설명",
+      body: "본문",
+      inlineCaption: "본문 이미지 설명",
+      quote: "강조 인용문"
     };
 
     function makeNewsInlineImage() {
@@ -3507,8 +3504,23 @@
       updateNewsPreview();
     }
 
+    async function waitForImages(root) {
+      const images = Array.from(root.querySelectorAll("img")).filter(img => img.src);
+      await Promise.all(images.map(img => {
+        if (img.complete && img.naturalWidth !== 0) return Promise.resolve();
+        if (img.decode) return img.decode().catch(() => {});
+        return new Promise(resolve => {
+          img.onload = resolve;
+          img.onerror = resolve;
+        });
+      }));
+    }
+
     async function downloadNewsPNG() {
+      updateNewsPreview();
       const node = $("newsPaper");
+      if (document.fonts && document.fonts.ready) await document.fonts.ready;
+      await waitForImages(node);
       const rect = node.getBoundingClientRect();
       const width = Math.ceil(rect.width);
       const height = Math.ceil(rect.height);
@@ -3555,10 +3567,19 @@
         ctx.drawImage(img, 0, 0);
         URL.revokeObjectURL(url);
 
-        const a = document.createElement("a");
-        a.download = "heartware-news-article.png";
-        a.href = canvas.toDataURL("image/png");
-        a.click();
+        canvas.toBlob(blob => {
+          if (!blob) {
+            alert("기사 이미지 저장에 실패했습니다. 캔버스 변환이 완료되지 않았습니다.");
+            return;
+          }
+
+          const a = document.createElement("a");
+          const downloadUrl = URL.createObjectURL(blob);
+          a.download = "heartware-news-article.png";
+          a.href = downloadUrl;
+          a.click();
+          setTimeout(() => URL.revokeObjectURL(downloadUrl), 1000);
+        }, "image/png");
       };
 
       img.onerror = () => {
