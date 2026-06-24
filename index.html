@@ -2603,14 +2603,13 @@
 
     function makeSvgImage(svgText) {
       return new Promise((resolve, reject) => {
-        const blob = new Blob([svgText], { type: "image/svg+xml;charset=utf-8" });
-        const url = URL.createObjectURL(blob);
+        // Blob URL로 SVG foreignObject를 Image에 넣은 뒤 canvas에 그리면
+        // 최신 Chromium 계열에서 canvas가 tainted 처리되어 toBlob()이 막히는 경우가 있다.
+        // Data URL은 같은 SVG라도 canvas export가 막히지 않으므로 저장 과정에서만 이 방식을 쓴다.
+        const url = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svgText);
         const img = new Image();
-        img.onload = () => resolve({ img, url });
-        img.onerror = () => {
-          URL.revokeObjectURL(url);
-          reject(new Error("SVG 이미지를 불러오지 못했습니다."));
-        };
+        img.onload = () => resolve({ img, url: null });
+        img.onerror = () => reject(new Error("SVG 이미지를 불러오지 못했습니다."));
         img.src = url;
       });
     }
@@ -2633,6 +2632,52 @@
       });
     }
 
+
+    async function optimizeCloneImagesForExport(sourceNode, clone, scale) {
+      const sourceImages = Array.from(sourceNode.querySelectorAll("img"));
+      const cloneImages = Array.from(clone.querySelectorAll("img"));
+
+      for (let i = 0; i < sourceImages.length; i++) {
+        const sourceImg = sourceImages[i];
+        const cloneImg = cloneImages[i];
+        if (!cloneImg) continue;
+
+        const src = sourceImg.getAttribute("src");
+        if (!src) continue;
+
+        const rect = sourceImg.getBoundingClientRect();
+        const naturalWidth = sourceImg.naturalWidth || rect.width || 1;
+        const naturalHeight = sourceImg.naturalHeight || rect.height || 1;
+
+        const maxWidth = Math.max(1, Math.ceil((rect.width || naturalWidth) * scale * 1.35));
+        const maxHeight = Math.max(1, Math.ceil((rect.height || naturalHeight) * scale * 1.35));
+        const ratio = Math.min(1, maxWidth / naturalWidth, maxHeight / naturalHeight);
+        const targetWidth = Math.max(1, Math.round(naturalWidth * ratio));
+        const targetHeight = Math.max(1, Math.round(naturalHeight * ratio));
+
+        try {
+          const canvas = document.createElement("canvas");
+          canvas.width = targetWidth;
+          canvas.height = targetHeight;
+          const ctx = canvas.getContext("2d");
+          ctx.imageSmoothingEnabled = true;
+          ctx.imageSmoothingQuality = "high";
+          ctx.clearRect(0, 0, targetWidth, targetHeight);
+          ctx.drawImage(sourceImg, 0, 0, targetWidth, targetHeight);
+
+          const isSmallIcon = (rect.width || 0) <= 96 && (rect.height || 0) <= 96;
+          const dataUrl = isSmallIcon
+            ? canvas.toDataURL("image/png")
+            : canvas.toDataURL("image/webp", 0.94);
+
+          cloneImg.setAttribute("src", dataUrl);
+        } catch (e) {
+          console.warn("Image export optimization skipped", e);
+          cloneImg.setAttribute("src", src);
+        }
+      }
+    }
+
     async function exportExactSvgPng(node, filename, scale) {
       if (document.fonts && document.fonts.ready) await document.fonts.ready;
       await waitForImages(node);
@@ -2648,6 +2693,8 @@
       clone.style.transform = "none";
       clone.style.width = width + "px";
       clone.style.height = height + "px";
+
+      await optimizeCloneImagesForExport(node, clone, scale);
 
       const styleText = collectLocalStyleText().replace(/\]\]>/g, "]]]]><![CDATA[>");
       const cloneHtml = makeXhtmlVoidTagsSafe(clone.outerHTML);
@@ -2677,7 +2724,7 @@ ${styleText}
         ctx.drawImage(img, 0, 0, width, height);
         await savePngFromCanvas(canvas, filename);
       } finally {
-        URL.revokeObjectURL(url);
+        if (url) URL.revokeObjectURL(url);
       }
     }
 
