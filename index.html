@@ -1878,6 +1878,45 @@
         transform-origin: top left;
       }
     }
+
+    /* Export-safe overrides. html2canvas can misrender CSS variables,
+       blend modes, filters and pseudo-element overlays. These rules are
+       applied only inside the cloned document while saving PNG. */
+    body.export-mode .event-frame {
+      transform: none !important;
+      overflow: hidden !important;
+      background:
+        linear-gradient(180deg, #050506 0 66px, #eeeeef 66px 100%) !important;
+    }
+
+    body.export-mode .event-frame.poster {
+      background:
+        linear-gradient(180deg, #050506 0 66px, #eeeeef 66px 100%) !important;
+    }
+
+    body.export-mode .event-frame::before,
+    body.export-mode .event-frame::after,
+    body.export-mode .glitch {
+      display: none !important;
+      content: none !important;
+    }
+
+    body.export-mode .browser,
+    body.export-mode .event-frame * {
+      filter: none !important;
+      mix-blend-mode: normal !important;
+    }
+
+    body.export-mode .event-frame.blackwhite {
+      --accent: #8b8b8b;
+      --accent-glow: rgba(255,255,255,.18);
+    }
+
+    body.export-mode .event-frame.purple {
+      --accent: #a45cff;
+      --accent-glow: rgba(164,92,255,.42);
+    }
+
   </style>
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </head>
@@ -2611,13 +2650,27 @@
       if (document.fonts && document.fonts.ready) await document.fonts.ready;
       await waitForImages(node);
 
+      const rect = node.getBoundingClientRect();
       const canvas = await html2canvas(node, {
         backgroundColor: null,
         scale,
         useCORS: true,
         allowTaint: false,
         logging: false,
-        imageTimeout: 15000
+        imageTimeout: 15000,
+        width: Math.ceil(rect.width),
+        height: Math.ceil(node.scrollHeight || rect.height),
+        windowWidth: Math.ceil(document.documentElement.scrollWidth),
+        windowHeight: Math.ceil(document.documentElement.scrollHeight),
+        onclone: (clonedDoc) => {
+          clonedDoc.body.classList.add("export-mode");
+          const clonedNode = clonedDoc.getElementById(node.id);
+          if (clonedNode) {
+            clonedNode.style.width = Math.ceil(rect.width) + "px";
+            clonedNode.style.minHeight = Math.ceil(node.scrollHeight || rect.height) + "px";
+            clonedNode.style.transform = "none";
+          }
+        }
       });
 
       await downloadCanvasAsPng(canvas, filename);
