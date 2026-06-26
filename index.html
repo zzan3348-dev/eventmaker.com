@@ -1700,11 +1700,11 @@
 
     .news-screen {
       min-height: calc(100vh - 58px);
-      width: min(1420px, calc(100% - 32px));
+      width: min(1480px, calc(100% - 32px));
       margin: 0 auto;
       padding: 28px 0;
       display: grid;
-      grid-template-columns: minmax(320px, 420px) 1fr;
+      grid-template-columns: minmax(330px, 430px) 1fr;
       gap: 24px;
     }
 
@@ -1717,88 +1717,225 @@
       overflow: auto;
     }
 
-    .news-paper {
-      width: min(760px, 100%);
-      min-height: 880px;
-      padding: 44px 54px 58px;
-      color: #111;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.94)),
-        #f4f1eb;
-      border: 1px solid rgba(0,0,0,.22);
-      box-shadow:
-        0 0 0 1px rgba(255,255,255,.42),
-        0 24px 90px rgba(0,0,0,.55);
-      font-family: "Noto Serif KR", "Noto Serif", "Times New Roman", serif;
+    .news-small-note {
+      margin-top: 8px;
+      color: #8e8789;
+      font-size: 12px;
+      line-height: 1.45;
     }
 
-    .news-topline {
+    .news-site {
+      --news-accent: #b10f24;
+      --news-ink: #11151b;
+      --news-muted: #5d6572;
+      --news-line: #d7dce3;
+      --news-soft: #f3f5f8;
+      width: min(1040px, 100%);
+      min-height: 940px;
+      color: var(--news-ink);
+      background: #fff;
+      border: 1px solid rgba(0,0,0,.18);
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,.42),
+        0 28px 96px rgba(0,0,0,.55);
+      font-family: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", system-ui, sans-serif;
+      overflow: hidden;
+    }
+
+    .news-site-header {
+      border-bottom: 1px solid var(--news-line);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.98), rgba(248,249,252,.98));
+    }
+
+    .news-breaking-bar {
+      min-height: 34px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 14px;
-      padding-bottom: 12px;
-      border-bottom: 3px solid #111;
-      font-family: "Pretendard", "Noto Sans KR", system-ui, sans-serif;
+      gap: 18px;
+      padding: 7px 28px;
+      background: var(--news-ink);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 850;
     }
 
-    .news-logo {
-      font-size: 25px;
-      font-weight: 950;
-      letter-spacing: -.04em;
-      color: #111;
-    }
-
-    .news-section-label {
-      border: 1px solid #111;
-      padding: 5px 9px;
-      font-size: 11px;
-      font-weight: 900;
+    .news-breaking-label {
+      color: #fff;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: var(--news-accent);
+      font-size: 10px;
       letter-spacing: .08em;
       text-transform: uppercase;
-      color: #111;
       white-space: nowrap;
     }
 
-    .news-meta-row {
+    .news-breaking-text {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: rgba(255,255,255,.82);
+    }
+
+    .news-masthead {
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
-      gap: 8px 13px;
-      margin-top: 14px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid rgba(0,0,0,.22);
-      color: #555;
-      font-family: "Pretendard", "Noto Sans KR", system-ui, sans-serif;
-      font-size: 13px;
-      font-weight: 650;
+      justify-content: space-between;
+      gap: 22px;
+      padding: 25px 34px 18px;
+    }
+
+    .news-brand-block {
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .news-logo-mark {
+      width: auto;
+      max-width: 120px;
+      height: 46px;
+      flex: 0 0 auto;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      background: transparent;
+      overflow: visible;
+    }
+
+    .news-logo-mark img {
+      width: auto;
+      height: 100%;
+      max-width: 120px;
+      object-fit: contain;
+      display: block;
+      background: transparent;
+    }
+
+    .news-logo-mark.has-image {
+      display: flex;
+    }
+
+    .news-logo-mark.has-image span { display: none; }
+
+    .news-logo {
+      color: var(--news-ink);
+      font-family: "Arial Black", "Pretendard", system-ui, sans-serif;
+      font-size: 34px;
+      line-height: 1;
+      font-weight: 950;
+      letter-spacing: -.035em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .news-tagline {
+      margin-top: 6px;
+      color: var(--news-muted);
+      font-size: 12px;
+      font-weight: 750;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .news-meta-stack {
+      flex: 0 0 auto;
+      text-align: right;
+      color: var(--news-muted);
+      font-size: 12px;
+      line-height: 1.55;
+      font-weight: 700;
+    }
+
+    .news-nav-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 10px 34px;
+      border-top: 1px solid var(--news-line);
+      background: #fff;
+      color: #343b46;
+      font-size: 12px;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .news-nav-row span:first-child {
+      color: var(--news-accent);
+    }
+
+    .news-page {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 250px;
+      gap: 32px;
+      padding: 34px;
+    }
+
+    .news-article {
+      min-width: 0;
+    }
+
+    .news-section-label {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 5px 10px;
+      color: #fff;
+      background: var(--news-accent);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
     }
 
     .news-title {
-      margin: 24px 0 0;
-      color: #080808;
+      margin: 17px 0 0;
+      color: var(--news-ink);
       font-family: "Noto Serif KR", "Noto Serif", "Times New Roman", serif;
-      font-size: 42px;
-      line-height: 1.16;
-      letter-spacing: -.055em;
+      font-size: clamp(36px, 5.2vw, 58px);
+      line-height: 1.08;
       font-weight: 950;
       word-break: keep-all;
+      letter-spacing: 0;
     }
 
     .news-subtitle {
-      margin-top: 13px;
-      color: #444;
-      font-size: 18px;
-      line-height: 1.55;
+      margin-top: 18px;
+      color: #3f4651;
+      font-size: 20px;
+      line-height: 1.58;
       font-weight: 650;
       word-break: keep-all;
+    }
+
+    .news-byline-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 12px;
+      margin-top: 20px;
+      padding: 14px 0;
+      border-top: 1px solid var(--news-line);
+      border-bottom: 1px solid var(--news-line);
+      color: var(--news-muted);
+      font-size: 13px;
+      font-weight: 700;
     }
 
     .news-main-image,
     .news-inline-image {
-      margin: 24px 0 10px;
-      border: 1px solid rgba(0,0,0,.22);
-      background: #ddd;
+      margin: 26px 0 8px;
+      border: 1px solid var(--news-line);
+      background: var(--news-soft);
       overflow: hidden;
     }
 
@@ -1809,6 +1946,11 @@
       display: block;
     }
 
+    .news-main-image img {
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+
     .news-main-image.empty,
     .news-inline-image.empty {
       display: none;
@@ -1816,125 +1958,155 @@
 
     .news-caption {
       margin: 7px 0 18px;
-      color: #666;
-      font-family: "Pretendard", "Noto Sans KR", system-ui, sans-serif;
+      color: var(--news-muted);
       font-size: 12px;
       line-height: 1.45;
+      font-weight: 650;
     }
 
     .news-body {
-      margin-top: 22px;
-      color: #161616;
-      font-size: 17px;
+      margin-top: 24px;
+      color: #1e232b;
+      font-family: "Noto Serif KR", "Noto Serif", "Times New Roman", serif;
+      font-size: 18px;
       line-height: 1.86;
-      letter-spacing: -.025em;
       word-break: keep-all;
     }
 
     .news-body p {
-      margin: 0 0 18px;
+      margin: 0 0 22px;
     }
 
     .news-dropcap .news-body p:first-child::first-letter {
       float: left;
-      font-size: 3.55em;
-      line-height: .88;
-      padding: 8px 8px 0 0;
-      font-weight: 900;
+      padding: 10px 9px 0 0;
+      color: var(--news-accent);
+      font-size: 4.1em;
+      line-height: .82;
+      font-weight: 950;
     }
 
     .news-quote {
-      margin: 24px 0;
-      padding: 14px 18px;
-      border-left: 4px solid #111;
-      background: rgba(0,0,0,.045);
-      color: #222;
-      font-size: 18px;
-      line-height: 1.65;
-      font-weight: 800;
+      margin: 28px 0;
+      padding: 18px 22px;
+      border-left: 5px solid var(--news-accent);
+      background: var(--news-soft);
+      color: var(--news-ink);
+      font-family: "Pretendard", "Noto Sans KR", system-ui, sans-serif;
+      font-size: 21px;
+      line-height: 1.58;
+      font-weight: 900;
+      word-break: keep-all;
     }
 
-    .news-footer {
-      margin-top: 36px;
-      padding-top: 12px;
-      border-top: 1px solid rgba(0,0,0,.24);
-      color: #777;
-      font-family: "Pretendard", "Noto Sans KR", system-ui, sans-serif;
+    .news-sidebar {
+      border-left: 1px solid var(--news-line);
+      padding-left: 24px;
+      color: #2f3640;
+      font-size: 13px;
+    }
+
+    .news-sidebar-title {
+      padding-bottom: 9px;
+      border-bottom: 3px solid var(--news-ink);
+      color: var(--news-ink);
+      font-size: 13px;
+      font-weight: 950;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .news-related-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .news-related-list li {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--news-line);
+      font-weight: 760;
+      line-height: 1.45;
+    }
+
+    .news-site-footer {
+      margin: 8px 34px 34px;
+      padding-top: 16px;
+      border-top: 1px solid var(--news-line);
+      color: var(--news-muted);
       font-size: 12px;
       line-height: 1.5;
     }
 
-    .news-red .news-topline {
-      border-bottom-color: #991729;
+    .news-layout-wide .news-page {
+      grid-template-columns: 1fr;
     }
 
-    .news-red .news-section-label {
-      border-color: #991729;
-      color: #991729;
+    .news-layout-wide .news-sidebar {
+      display: none;
     }
 
-    .news-red .news-quote {
-      border-left-color: #991729;
-      background: rgba(153,23,41,.06);
+    .news-layout-compact .news-title {
+      font-size: clamp(32px, 4.2vw, 46px);
     }
 
-    .news-dark {
-      color: #eee;
+    .news-layout-compact .news-page {
+      grid-template-columns: minmax(0, 1fr) 210px;
+      gap: 24px;
+    }
+
+    .news-portal {
+      --news-accent: #0b5bd3;
+      --news-ink: #0d1524;
+      --news-soft: #eef5ff;
+    }
+
+    .news-finance {
+      --news-accent: #08765b;
+      --news-ink: #101820;
+      --news-soft: #edf7f3;
+    }
+
+    .news-investigate {
+      --news-accent: #8d1521;
+      --news-ink: #141414;
+      --news-soft: #f7f1eb;
+    }
+
+    .news-investigate .news-site-header {
       background:
-        linear-gradient(180deg, rgba(18,18,20,.96), rgba(8,8,10,.96)),
-        #111;
-      border-color: rgba(255,255,255,.16);
+        linear-gradient(180deg, #faf6ef, #fffaf2);
     }
 
-    .news-dark .news-logo,
-    .news-dark .news-title,
-    .news-dark .news-section-label {
-      color: #f5f5f5;
+    .news-darkweb {
+      --news-accent: #4dbbff;
+      --news-ink: #eef6ff;
+      --news-muted: rgba(238,246,255,.68);
+      --news-line: rgba(255,255,255,.16);
+      --news-soft: rgba(255,255,255,.07);
+      color: #eef6ff;
+      background:
+        linear-gradient(180deg, rgba(12,15,20,.98), rgba(5,7,10,.98)),
+        #07090d;
+      border-color: rgba(255,255,255,.14);
     }
 
-    .news-dark .news-topline {
-      border-bottom-color: rgba(255,255,255,.82);
+    .news-darkweb .news-site-header,
+    .news-darkweb .news-nav-row {
+      background: rgba(9,12,16,.98);
     }
 
-    .news-dark .news-meta-row,
-    .news-dark .news-subtitle,
-    .news-dark .news-caption,
-    .news-dark .news-footer {
-      color: rgba(255,255,255,.66);
+    .news-darkweb .news-logo,
+    .news-darkweb .news-title,
+    .news-darkweb .news-sidebar-title,
+    .news-darkweb .news-body,
+    .news-darkweb .news-subtitle,
+    .news-darkweb .news-quote {
+      color: #eef6ff;
     }
 
-    .news-dark .news-body,
-    .news-dark .news-quote {
-      color: rgba(255,255,255,.9);
-    }
-
-    .news-dark .news-quote {
-      border-left-color: rgba(255,255,255,.84);
-      background: rgba(255,255,255,.07);
-    }
-
-    .news-two-column .news-body {
-      column-count: 2;
-      column-gap: 34px;
-      column-rule: 1px solid rgba(0,0,0,.16);
-      font-size: 15.5px;
-      line-height: 1.78;
-    }
-
-    .news-dark.news-two-column .news-body {
-      column-rule-color: rgba(255,255,255,.15);
-    }
-
-    .news-two-column .news-inline-image,
-    .news-two-column .news-quote {
-      break-inside: avoid;
-    }
-
-    .news-small-note {
-      margin-top: 8px;
-      color: #8e8789;
-      font-size: 12px;
-      line-height: 1.45;
+    .news-darkweb .news-logo-mark.has-image {
+      background: transparent;
     }
 
 
@@ -1972,6 +2144,9 @@
       .super-screen {
         grid-template-columns: 1fr;
       }
+      .news-screen {
+        grid-template-columns: 1fr;
+      }
       .controls {
         position: static;
         max-height: none;
@@ -1981,6 +2156,10 @@
         min-height: auto;
         padding: 36px 0 48px;
         align-items: flex-start;
+      }
+      .news-preview-wrap {
+        min-height: auto;
+        padding: 20px 0 48px;
       }
     }
 
@@ -2045,6 +2224,54 @@
       .super-play-indicator {
         bottom: 12px;
         font-size: 9px;
+      }
+      .news-screen {
+        width: min(100%, calc(100% - 20px));
+        padding-top: 16px;
+      }
+      .news-site {
+        min-height: auto;
+      }
+      .news-breaking-bar {
+        padding: 7px 16px;
+      }
+      .news-masthead {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 22px 18px 16px;
+      }
+      .news-logo {
+        white-space: normal;
+        font-size: 28px;
+      }
+      .news-meta-stack {
+        text-align: left;
+      }
+      .news-nav-row {
+        gap: 14px;
+        padding: 10px 18px;
+        overflow: hidden;
+      }
+      .news-page {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 24px 18px;
+      }
+      .news-title {
+        font-size: 34px;
+      }
+      .news-subtitle {
+        font-size: 17px;
+      }
+      .news-body {
+        font-size: 16px;
+      }
+      .news-sidebar {
+        border-left: 0;
+        padding-left: 0;
+      }
+      .news-site-footer {
+        margin: 4px 18px 24px;
       }
     }
   </style>
@@ -2240,134 +2467,248 @@
   <main id="newsScreen" class="news-screen screen-hidden">
     <aside class="controls">
       <header>
-        <h1>News Maker</h1>
-        <p>현실 뉴스기사처럼 제목, 날짜, 기자, 본문, 이미지를 넣어 기사 이미지로 저장하는 제작기.</p>
+        <h1>News Site Maker</h1>
+        <p>언론사 웹 기사 화면처럼 로고, 헤더, 본문 이미지, 인용문을 배치하는 제작기.</p>
       </header>
 
       <section class="control-body">
-        <label for="newsOutletInput">언론사 / 사이트명</label>
-        <input id="newsOutletInput" value="언론사" />
+        <div class="mini-section">
+          <div class="mini-title">언론사 헤더</div>
+          <label for="newsOutletInput">언론사 이름</label>
+          <input id="newsOutletInput" value="언론사 이름" />
 
-        <label for="newsSectionInput">분류</label>
-        <input id="newsSectionInput" value="분류" />
+          <label for="newsTaglineInput">언론사 설명</label>
+          <input id="newsTaglineInput" value="언론사 설명" />
 
-        <label for="newsTitleInput">기사 제목</label>
-        <textarea id="newsTitleInput" style="min-height: 92px;">제목</textarea>
+          <label for="newsLogoInput">뉴스회사 로고</label>
+          <input id="newsLogoInput" type="file" accept="image/*" />
+          <img id="newsLogoImage" alt="" style="display:none;" />
 
-        <label for="newsSubtitleInput">부제 / 요약문</label>
-        <textarea id="newsSubtitleInput" style="min-height: 92px;">부제목</textarea>
+          <label for="newsNavInput">상단 메뉴</label>
+          <input id="newsNavInput" value="메뉴1 · 메뉴2 · 메뉴3 · 메뉴4" />
 
-        <div class="row">
-          <div>
-            <label for="newsDateInput">날짜</label>
-            <input id="newsDateInput" value="날짜" />
-          </div>
-          <div>
-            <label for="newsReporterInput">기자</label>
-            <input id="newsReporterInput" value="기자" />
-          </div>
+          <label for="newsLiveInput">상단 속보 문구</label>
+          <input id="newsLiveInput" value="속보 내용" />
         </div>
 
-        <label for="newsLocationInput">지역 / 출처</label>
-        <input id="newsLocationInput" value="지역 / 출처" />
+        <div class="mini-section">
+          <div class="mini-title">기사 정보</div>
+          <label for="newsSectionInput">섹션</label>
+          <input id="newsSectionInput" value="분류" />
 
-        <label for="newsMainImageInput">대표 이미지</label>
-        <input id="newsMainImageInput" type="file" accept="image/*" />
+          <label for="newsTitleInput">기사 제목</label>
+          <textarea id="newsTitleInput" style="min-height: 92px;">제목</textarea>
 
-        <label for="newsMainCaptionInput">대표 이미지 설명</label>
-        <input id="newsMainCaptionInput" value="대표 이미지 설명" />
+          <label for="newsSubtitleInput">부제 / 요약문</label>
+          <textarea id="newsSubtitleInput" style="min-height: 92px;">요약 내용</textarea>
 
-        <label for="newsBodyInput">본문</label>
-        <textarea id="newsBodyInput">본문</textarea>
-
-        <label for="newsInlineImageInput">본문 삽입 이미지</label>
-        <input id="newsInlineImageInput" type="file" accept="image/*" />
-        <img id="newsInlineImage" alt="" style="display:none;" />
-
-        <label for="newsInlineCaptionInput">본문 이미지 설명</label>
-        <input id="newsInlineCaptionInput" value="본문 이미지 설명" />
-
-        <label for="newsImagePositionInput">본문 이미지 위치</label>
-        <select id="newsImagePositionInput">
-          <option value="none">삽입 안 함</option>
-          <option value="afterLead">부제 아래</option>
-          <option value="afterP1">1번째 문단 뒤</option>
-          <option value="afterP2">2번째 문단 뒤</option>
-          <option value="afterP3">3번째 문단 뒤</option>
-          <option value="bottom">기사 하단</option>
-        </select>
-
-        <label for="newsQuoteInput">강조 인용문</label>
-        <input id="newsQuoteInput" value="강조 인용문" />
-
-        <label for="newsQuotePositionInput">강조 인용문 위치</label>
-        <select id="newsQuotePositionInput">
-          <option value="none">삽입 안 함</option>
-          <option value="afterP1">1번째 문단 뒤</option>
-          <option value="afterP2">2번째 문단 뒤</option>
-          <option value="afterP3">3번째 문단 뒤</option>
-          <option value="bottom">기사 하단</option>
-        </select>
-
-        <div class="row">
-          <div>
-            <label for="newsStyleInput">스타일</label>
-            <select id="newsStyleInput">
-              <option value="">일반 신문</option>
-              <option value="news-red">붉은 헤드라인</option>
-              <option value="news-dark">어두운 디지털 기사</option>
-            </select>
+          <div class="row">
+            <div>
+              <label for="newsDateInput">날짜</label>
+              <input id="newsDateInput" value="날짜" />
+            </div>
+            <div>
+              <label for="newsReporterInput">기자</label>
+              <input id="newsReporterInput" value="기자 이름" />
+            </div>
           </div>
-          <div>
-            <label for="newsLayoutInput">본문 레이아웃</label>
-            <select id="newsLayoutInput">
-              <option value="">단일 칼럼</option>
-              <option value="news-two-column">2단 칼럼</option>
-            </select>
-          </div>
+
+          <label for="newsLocationInput">지역 / 출처</label>
+          <input id="newsLocationInput" value="지역 / 출처" />
         </div>
 
-        <label>
-          <input id="newsDropcapInput" type="checkbox" style="width:auto; margin-right:8px;" />
-          첫 글자 크게 표시
-        </label>
+        <div class="mini-section">
+          <div class="mini-title">대표 이미지</div>
+          <label for="newsMainImageInput">메인 비주얼</label>
+          <input id="newsMainImageInput" type="file" accept="image/*" />
+
+          <label for="newsMainCaptionInput">대표 이미지 설명</label>
+          <input id="newsMainCaptionInput" value="이미지 설명" />
+        </div>
+
+        <div class="mini-section">
+          <div class="mini-title">본문</div>
+          <label for="newsBodyInput">본문 문단</label>
+          <textarea id="newsBodyInput">글 내용
+
+글 내용
+
+글 내용</textarea>
+        </div>
+
+        <div class="mini-section">
+          <div class="mini-title">본문 이미지 1</div>
+          <label for="newsInlineImageInput1">이미지</label>
+          <input id="newsInlineImageInput1" type="file" accept="image/*" />
+          <img id="newsInlineImage1" alt="" style="display:none;" />
+          <label for="newsInlineCaptionInput1">설명</label>
+          <input id="newsInlineCaptionInput1" value="이미지 설명 1" />
+          <label for="newsImagePositionInput1">위치</label>
+          <select id="newsImagePositionInput1">
+            <option value="none">삽입 안 함</option>
+            <option value="afterLead">요약문 아래</option>
+            <option value="afterP1">1번째 문단 뒤</option>
+            <option value="afterP2">2번째 문단 뒤</option>
+            <option value="afterP3">3번째 문단 뒤</option>
+            <option value="afterP4">4번째 문단 뒤</option>
+            <option value="bottom">기사 하단</option>
+          </select>
+        </div>
+
+        <div class="mini-section">
+          <div class="mini-title">본문 이미지 2</div>
+          <label for="newsInlineImageInput2">이미지</label>
+          <input id="newsInlineImageInput2" type="file" accept="image/*" />
+          <img id="newsInlineImage2" alt="" style="display:none;" />
+          <label for="newsInlineCaptionInput2">설명</label>
+          <input id="newsInlineCaptionInput2" value="이미지 설명 2" />
+          <label for="newsImagePositionInput2">위치</label>
+          <select id="newsImagePositionInput2">
+            <option value="none">삽입 안 함</option>
+            <option value="afterLead">요약문 아래</option>
+            <option value="afterP1">1번째 문단 뒤</option>
+            <option value="afterP2">2번째 문단 뒤</option>
+            <option value="afterP3">3번째 문단 뒤</option>
+            <option value="afterP4">4번째 문단 뒤</option>
+            <option value="bottom">기사 하단</option>
+          </select>
+        </div>
+
+        <div class="mini-section">
+          <div class="mini-title">본문 이미지 3</div>
+          <label for="newsInlineImageInput3">이미지</label>
+          <input id="newsInlineImageInput3" type="file" accept="image/*" />
+          <img id="newsInlineImage3" alt="" style="display:none;" />
+          <label for="newsInlineCaptionInput3">설명</label>
+          <input id="newsInlineCaptionInput3" value="이미지 설명 3" />
+          <label for="newsImagePositionInput3">위치</label>
+          <select id="newsImagePositionInput3">
+            <option value="none">삽입 안 함</option>
+            <option value="afterLead">요약문 아래</option>
+            <option value="afterP1">1번째 문단 뒤</option>
+            <option value="afterP2">2번째 문단 뒤</option>
+            <option value="afterP3">3번째 문단 뒤</option>
+            <option value="afterP4">4번째 문단 뒤</option>
+            <option value="bottom">기사 하단</option>
+          </select>
+        </div>
+
+        <div class="mini-section">
+          <div class="mini-title">강조 인용</div>
+          <label for="newsQuoteInput">인용문</label>
+          <input id="newsQuoteInput" value="인용문" />
+
+          <label for="newsQuotePositionInput">위치</label>
+          <select id="newsQuotePositionInput">
+            <option value="none">삽입 안 함</option>
+            <option value="afterLead">요약문 아래</option>
+            <option value="afterP1">1번째 문단 뒤</option>
+            <option value="afterP2">2번째 문단 뒤</option>
+            <option value="afterP3">3번째 문단 뒤</option>
+            <option value="bottom">기사 하단</option>
+          </select>
+        </div>
+
+        <div class="mini-section">
+          <div class="mini-title">페이지 스타일</div>
+          <div class="row">
+            <div>
+              <label for="newsStyleInput">언론사 톤</label>
+              <select id="newsStyleInput">
+                <option value="">종합 일간지</option>
+                <option value="news-portal">포털 뉴스</option>
+                <option value="news-finance">경제지</option>
+                <option value="news-investigate">탐사보도</option>
+                <option value="news-darkweb">다크 디지털</option>
+              </select>
+            </div>
+            <div>
+              <label for="newsLayoutInput">페이지 구성</label>
+              <select id="newsLayoutInput">
+                <option value="">사이드바형</option>
+                <option value="news-layout-wide">본문 집중형</option>
+                <option value="news-layout-compact">컴팩트형</option>
+              </select>
+            </div>
+          </div>
+
+          <label>
+            <input id="newsDropcapInput" type="checkbox" style="width:auto; margin-right:8px;" />
+            첫 문단 드롭캡
+          </label>
+        </div>
 
         <div class="buttons">
           <button id="newsDownloadBtn" type="button">기사 이미지 저장</button>
           <button id="newsResetBtn" type="button" class="danger">초기화</button>
         </div>
-        <div class="news-small-note">본문이 길어지면 기사 종이가 자동으로 아래로 늘어남.</div>
+        <div class="news-small-note">본문 문단은 빈 줄로 구분됩니다.</div>
       </section>
     </aside>
 
     <section class="news-preview-wrap">
-      <article id="newsPaper" class="news-paper">
-        <div class="news-topline">
-          <div id="newsOutletText" class="news-logo">언론사</div>
-          <div id="newsSectionText" class="news-section-label">분류</div>
+      <article id="newsPaper" class="news-site">
+        <header class="news-site-header">
+          <div class="news-breaking-bar">
+            <span class="news-breaking-label">Live</span>
+            <span id="newsLiveText" class="news-breaking-text">속보 내용</span>
+          </div>
+          <div class="news-masthead">
+            <div class="news-brand-block">
+              <div id="newsLogoMark" class="news-logo-mark">
+                <span id="newsLogoInitial"></span>
+                <img id="newsLogoPreview" alt="" />
+              </div>
+              <div>
+                <div id="newsOutletText" class="news-logo">언론사 이름</div>
+                <div id="newsTaglineText" class="news-tagline">언론사 설명</div>
+              </div>
+            </div>
+            <div class="news-meta-stack">
+              <div id="newsHeaderDateText">날짜</div>
+              <div id="newsHeaderLocationText">지역 / 출처</div>
+            </div>
+          </div>
+          <nav id="newsNavText" class="news-nav-row">
+            <span>메뉴1</span><span>메뉴2</span><span>메뉴3</span><span>메뉴4</span>
+          </nav>
+        </header>
+
+        <div class="news-page">
+          <article class="news-article">
+            <div id="newsSectionText" class="news-section-label">분류</div>
+            <h1 id="newsTitleText" class="news-title">제목</h1>
+            <div id="newsSubtitleText" class="news-subtitle">요약 내용</div>
+
+            <div class="news-byline-row">
+              <span id="newsReporterText">기자 이름</span>
+              <span>·</span>
+              <span id="newsDateText">날짜</span>
+              <span>·</span>
+              <span id="newsLocationText">지역 / 출처</span>
+            </div>
+
+            <figure id="newsMainImageBox" class="news-main-image empty">
+              <img id="newsMainImage" alt="" />
+            </figure>
+            <div id="newsMainCaptionText" class="news-caption"></div>
+
+            <div id="newsBodyText" class="news-body"></div>
+          </article>
+
+          <aside class="news-sidebar">
+            <div class="news-sidebar-title">Related</div>
+            <ul class="news-related-list">
+              <li id="newsRelatedOne">관련 기사 제목</li>
+              <li id="newsRelatedTwo">주요 기사 제목</li>
+              <li id="newsRelatedThree">작성 기사 제목</li>
+            </ul>
+          </aside>
         </div>
 
-        <div class="news-meta-row">
-          <span id="newsDateText">날짜</span>
-          <span>·</span>
-          <span id="newsReporterText">기자</span>
-          <span>·</span>
-          <span id="newsLocationText">지역 / 출처</span>
-        </div>
-
-        <h1 id="newsTitleText" class="news-title">제목</h1>
-        <div id="newsSubtitleText" class="news-subtitle">부제목</div>
-
-        <figure id="newsMainImageBox" class="news-main-image empty">
-          <img id="newsMainImage" alt="" />
-        </figure>
-        <div id="newsMainCaptionText" class="news-caption"></div>
-
-        <div id="newsBodyText" class="news-body"></div>
-
-        <div class="news-footer">
-          이 기사는 HΣΛTWΔRΞ:WORLD3 Event Maker에서 생성된 세계관용 기사 이미지입니다.
-        </div>
+        <footer class="news-site-footer">
+          이 페이지는 HΣΛTWΔRΞ:WORLD3 Event Maker에서 생성된 세계관용 뉴스 사이트 이미지입니다.
+        </footer>
       </article>
     </section>
   </main>
@@ -3838,30 +4179,79 @@
 
 
     const newsDefaults = {
-      outlet: "언론사",
+      outlet: "언론사 이름",
+      tagline: "언론사 설명",
+      nav: "메뉴1 · 메뉴2 · 메뉴3 · 메뉴4",
+      live: "속보 내용",
       section: "분류",
       title: "제목",
-      subtitle: "부제목",
+      subtitle: "요약 내용",
       date: "날짜",
-      reporter: "기자",
+      reporter: "기자 이름",
       location: "지역 / 출처",
-      mainCaption: "대표 이미지 설명",
-      body: "본문",
-      inlineCaption: "본문 이미지 설명",
-      quote: "강조 인용문"
+      mainCaption: "이미지 설명",
+      body: `글 내용
+
+글 내용
+
+글 내용`,
+      quote: "인용문",
+      captions: [
+        "이미지 설명 1",
+        "이미지 설명 2",
+        "이미지 설명 3"
+      ]
     };
 
-    function makeNewsInlineImage() {
+    const newsInlineSlots = [1, 2, 3];
+
+    function setText(id, value, fallback = "") {
+      $(id).textContent = value || fallback;
+    }
+
+    function splitNewsNav(value) {
+      return String(value || newsDefaults.nav)
+        .split(/[·,|/]+/g)
+        .map(item => item.trim())
+        .filter(Boolean)
+        .slice(0, 7);
+    }
+
+    function hasNewsImage(id) {
+      const img = $(id);
+      return !!(img && img.getAttribute("src"));
+    }
+
+    function updateNewsLogo() {
+      const logoMark = $("newsLogoMark");
+      const logoPreview = $("newsLogoPreview");
+      const uploadedLogo = $("newsLogoImage");
+      if (hasNewsImage("newsLogoImage")) {
+        logoPreview.src = uploadedLogo.src;
+        logoMark.classList.add("has-image");
+      } else {
+        logoPreview.removeAttribute("src");
+        logoMark.classList.remove("has-image");
+      }
+    }
+
+    function makeNewsInlineImage(slot) {
+      const imgSource = $(`newsInlineImage${slot}`);
+      if (!imgSource || !imgSource.getAttribute("src")) return [];
+
       const box = document.createElement("figure");
       box.className = "news-inline-image";
       const img = document.createElement("img");
-      img.src = $("newsInlineImage").src;
+      img.src = imgSource.src;
       img.alt = "";
       box.appendChild(img);
 
+      const captionText = $(`newsInlineCaptionInput${slot}`).value || "";
+      if (!captionText.trim()) return [box];
+
       const caption = document.createElement("div");
       caption.className = "news-caption";
-      caption.textContent = $("newsInlineCaptionInput").value || "";
+      caption.textContent = captionText;
       return [box, caption];
     }
 
@@ -3873,37 +4263,57 @@
     }
 
     function appendNewsInsertions(container, position, paragraphIndex) {
-      const imgPos = $("newsImagePositionInput").value;
-      const quotePos = $("newsQuotePositionInput").value;
-
-      if (imgPos === position || imgPos === `afterP${paragraphIndex}`) {
-        if ($("newsInlineImage").src) {
-          const [box, caption] = makeNewsInlineImage();
-          container.appendChild(box);
-          if (caption.textContent.trim()) container.appendChild(caption);
+      newsInlineSlots.forEach(slot => {
+        const pos = $(`newsImagePositionInput${slot}`).value;
+        if (pos === position || pos === `afterP${paragraphIndex}`) {
+          makeNewsInlineImage(slot).forEach(node => container.appendChild(node));
         }
-      }
+      });
 
+      const quotePos = $("newsQuotePositionInput").value;
       if (quotePos === position || quotePos === `afterP${paragraphIndex}`) {
         container.appendChild(makeNewsQuote());
       }
     }
 
     function updateNewsPreview() {
-      $("newsOutletText").textContent = $("newsOutletInput").value || newsDefaults.outlet;
-      $("newsSectionText").textContent = $("newsSectionInput").value || newsDefaults.section;
-      $("newsDateText").textContent = $("newsDateInput").value || newsDefaults.date;
-      $("newsReporterText").textContent = $("newsReporterInput").value || newsDefaults.reporter;
-      $("newsLocationText").textContent = $("newsLocationInput").value || newsDefaults.location;
-      $("newsTitleText").textContent = $("newsTitleInput").value || newsDefaults.title;
-      $("newsSubtitleText").textContent = $("newsSubtitleInput").value || newsDefaults.subtitle;
+      const outlet = $("newsOutletInput").value || newsDefaults.outlet;
+      const section = $("newsSectionInput").value || newsDefaults.section;
+      const title = $("newsTitleInput").value || newsDefaults.title;
+      const subtitle = $("newsSubtitleInput").value || newsDefaults.subtitle;
+      const date = $("newsDateInput").value || newsDefaults.date;
+      const reporter = $("newsReporterInput").value || newsDefaults.reporter;
+      const location = $("newsLocationInput").value || newsDefaults.location;
+
+      setText("newsOutletText", outlet, newsDefaults.outlet);
+      setText("newsTaglineText", $("newsTaglineInput").value, newsDefaults.tagline);
+      setText("newsLiveText", $("newsLiveInput").value, newsDefaults.live);
+      setText("newsSectionText", section, newsDefaults.section);
+      setText("newsDateText", date, newsDefaults.date);
+      setText("newsHeaderDateText", date, newsDefaults.date);
+      setText("newsReporterText", reporter, newsDefaults.reporter);
+      setText("newsLocationText", location, newsDefaults.location);
+      setText("newsHeaderLocationText", location, newsDefaults.location);
+      setText("newsTitleText", title, newsDefaults.title);
+      setText("newsSubtitleText", subtitle, newsDefaults.subtitle);
+      updateNewsLogo();
+
+      const nav = $("newsNavText");
+      nav.innerHTML = "";
+      splitNewsNav($("newsNavInput").value).forEach(item => {
+        const span = document.createElement("span");
+        span.textContent = item;
+        nav.appendChild(span);
+      });
 
       const mainCaption = $("newsMainCaptionInput").value || "";
+      const hasMainImage = hasNewsImage("newsMainImage");
+      $("newsMainImageBox").classList.toggle("empty", !hasMainImage);
       $("newsMainCaptionText").textContent = mainCaption;
-      $("newsMainCaptionText").style.display = $("newsMainImage").src && mainCaption.trim() ? "block" : "none";
+      $("newsMainCaptionText").style.display = hasMainImage && mainCaption.trim() ? "block" : "none";
 
       const paper = $("newsPaper");
-      paper.className = "news-paper";
+      paper.className = "news-site";
       const style = $("newsStyleInput").value;
       const layout = $("newsLayoutInput").value;
       if (style) paper.classList.add(style);
@@ -3912,7 +4322,6 @@
 
       const body = $("newsBodyText");
       body.innerHTML = "";
-
       appendNewsInsertions(body, "afterLead", 0);
 
       const paragraphs = String($("newsBodyInput").value || newsDefaults.body)
@@ -3928,9 +4337,13 @@
       });
 
       appendNewsInsertions(body, "bottom", 999);
+
+      $("newsRelatedOne").textContent = `${section} 관련 기사 제목`;
+      $("newsRelatedTwo").textContent = `${outlet} 주요 기사 제목`;
+      $("newsRelatedThree").textContent = `${reporter} 작성 기사 제목`;
     }
 
-    function bindNewsImageInput(inputId, imgId, boxId) {
+    function bindNewsImageInput(inputId, imgId) {
       $(inputId).addEventListener("change", event => {
         const file = event.target.files && event.target.files[0];
         if (!file) return;
@@ -3938,7 +4351,6 @@
         const reader = new FileReader();
         reader.onload = () => {
           $(imgId).src = reader.result;
-          if (boxId) $(boxId).classList.remove("empty");
           updateNewsPreview();
         };
         reader.readAsDataURL(file);
@@ -3947,6 +4359,9 @@
 
     function resetNewsMaker() {
       $("newsOutletInput").value = newsDefaults.outlet;
+      $("newsTaglineInput").value = newsDefaults.tagline;
+      $("newsNavInput").value = newsDefaults.nav;
+      $("newsLiveInput").value = newsDefaults.live;
       $("newsSectionInput").value = newsDefaults.section;
       $("newsTitleInput").value = newsDefaults.title;
       $("newsSubtitleInput").value = newsDefaults.subtitle;
@@ -3955,33 +4370,25 @@
       $("newsLocationInput").value = newsDefaults.location;
       $("newsMainCaptionInput").value = newsDefaults.mainCaption;
       $("newsBodyInput").value = newsDefaults.body;
-      $("newsInlineCaptionInput").value = newsDefaults.inlineCaption;
       $("newsQuoteInput").value = newsDefaults.quote;
-      $("newsImagePositionInput").value = "none";
       $("newsQuotePositionInput").value = "none";
       $("newsStyleInput").value = "";
       $("newsLayoutInput").value = "";
       $("newsDropcapInput").checked = false;
 
+      $("newsLogoInput").value = "";
+      $("newsLogoImage").removeAttribute("src");
       $("newsMainImageInput").value = "";
-      $("newsInlineImageInput").value = "";
       $("newsMainImage").removeAttribute("src");
-      $("newsInlineImage").removeAttribute("src");
-      $("newsMainImageBox").classList.add("empty");
+
+      newsInlineSlots.forEach((slot, idx) => {
+        $(`newsInlineImageInput${slot}`).value = "";
+        $(`newsInlineImage${slot}`).removeAttribute("src");
+        $(`newsInlineCaptionInput${slot}`).value = newsDefaults.captions[idx];
+        $(`newsImagePositionInput${slot}`).value = "none";
+      });
 
       updateNewsPreview();
-    }
-
-    async function waitForImages(root) {
-      const images = Array.from(root.querySelectorAll("img")).filter(img => img.src);
-      await Promise.all(images.map(img => {
-        if (img.complete && img.naturalWidth !== 0) return Promise.resolve();
-        if (img.decode) return img.decode().catch(() => {});
-        return new Promise(resolve => {
-          img.onload = resolve;
-          img.onerror = resolve;
-        });
-      }));
     }
 
     async function downloadNewsPNG() {
@@ -3995,18 +4402,25 @@
     }
 
     [
-      "newsOutletInput", "newsSectionInput", "newsTitleInput", "newsSubtitleInput",
+      "newsOutletInput", "newsTaglineInput", "newsLogoInput", "newsNavInput", "newsLiveInput",
+      "newsSectionInput", "newsTitleInput", "newsSubtitleInput",
       "newsDateInput", "newsReporterInput", "newsLocationInput",
-      "newsMainCaptionInput", "newsBodyInput", "newsInlineCaptionInput",
-      "newsImagePositionInput", "newsQuoteInput", "newsQuotePositionInput",
+      "newsMainCaptionInput", "newsBodyInput",
+      "newsInlineCaptionInput1", "newsImagePositionInput1",
+      "newsInlineCaptionInput2", "newsImagePositionInput2",
+      "newsInlineCaptionInput3", "newsImagePositionInput3",
+      "newsQuoteInput", "newsQuotePositionInput",
       "newsStyleInput", "newsLayoutInput", "newsDropcapInput"
     ].forEach(id => {
       $(id).addEventListener("input", updateNewsPreview);
       $(id).addEventListener("change", updateNewsPreview);
     });
 
-    bindNewsImageInput("newsMainImageInput", "newsMainImage", "newsMainImageBox");
-    bindNewsImageInput("newsInlineImageInput", "newsInlineImage", null);
+    bindNewsImageInput("newsLogoInput", "newsLogoImage");
+    bindNewsImageInput("newsMainImageInput", "newsMainImage");
+    bindNewsImageInput("newsInlineImageInput1", "newsInlineImage1");
+    bindNewsImageInput("newsInlineImageInput2", "newsInlineImage2");
+    bindNewsImageInput("newsInlineImageInput3", "newsInlineImage3");
 
     $("newsDownloadBtn").addEventListener("click", downloadNewsPNG);
     $("newsResetBtn").addEventListener("click", resetNewsMaker);
